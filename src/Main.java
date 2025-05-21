@@ -1,28 +1,38 @@
 import java.util.Arrays;
 
 public class Main {
+
+    // Question 1
+    // Sources Used:
+    // https://www.geeksforgeeks.org/single-pass-two-pass-and-multi-pass-compilers/
     public static int[] sortColors(int[] nums) {
 
         int start = 0;
         int end = nums.length - 1;
 
-        for (int i = 0; i <= end;) {
-            if (nums[i] == 0) {
-                int temp = nums[i];
-                nums[i] = nums[start];
-                nums[start] = temp;
+        // Iterate through the entire array and check each value.
+        for (int count = 0; count <= end;) {
+
+            // Sort 0 to the start of the array
+            if (nums[count] == 0) {
+                int x = nums[count];
+                nums[count] = nums[start];
+                nums[start] = x;
                 start++;
-                i++;
-            } else if (nums[i] == 1) {
-                i++;
+                count++;
+
+            // Sort 1 to the middle of the array
+            } else if (nums[count] == 1) {
+                count++;
+
+            // Sort 2 to the end of the array
             } else {
-                int temp = nums[i];
-                nums[i] = nums[end];
-                nums[end] = temp;
+                int x = nums[count];
+                nums[count] = nums[end];
+                nums[end] = x;
                 end--;
             }
         }
-
         return nums;
     }
 
