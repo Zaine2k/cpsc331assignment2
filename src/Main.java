@@ -13,24 +13,24 @@ public class Main {
         // Iterate through the entire array and check each value.
         for (int count = 0; count <= end;) {
 
-            // Sort 0 to the start of the array
+            // Sort 0 to the start of the array by swapping
             if (nums[count] == 0) {
                 int x = nums[count];
                 nums[count] = nums[start];
                 nums[start] = x;
-                start++;
+                start++; // we increment to ignore the element we just swapped
                 count++;
 
-            // Sort 1 to the middle of the array
+            // Sort 1 to the middle of the array, we don't need to worry because it serves as the middle point.
             } else if (nums[count] == 1) {
                 count++;
 
-            // Sort 2 to the end of the array
+            // Sort 2 to the end of the array by swapping elements to the end of the list.
             } else {
                 int x = nums[count];
                 nums[count] = nums[end];
                 nums[end] = x;
-                end--;
+                end--; // we decrement in order to ignore the element we just swapped.
             }
         }
         return nums;
