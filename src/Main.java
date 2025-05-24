@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Stack;
 
 public class Main {
 
@@ -6,7 +7,6 @@ public class Main {
     // Sources Used:
     // https://www.geeksforgeeks.org/single-pass-two-pass-and-multi-pass-compilers/
     public static int[] sortColors(int[] nums) {
-
         int start = 0;
         int end = nums.length - 1;
 
@@ -18,31 +18,47 @@ public class Main {
                 int x = nums[count];
                 nums[count] = nums[start];
                 nums[start] = x;
-                start++; // we increment to ignore the element we just swapped
+                start++;
                 count++;
 
-            // Sort 1 to the middle of the array, we don't need to worry because it serves as the middle point.
+                // Sort 1 to the middle of the array
             } else if (nums[count] == 1) {
                 count++;
 
-            // Sort 2 to the end of the array by swapping elements to the end of the list.
+                // Sort 2 to the end of the array by swapping
             } else {
                 int x = nums[count];
                 nums[count] = nums[end];
                 nums[end] = x;
-                end--; // we decrement in order to ignore the element we just swapped.
+                end--;
             }
         }
         return nums;
     }
 
     // Question 3
-    public static boolean isBalanced ( String s) {
-        return false;
+    public static boolean isBalanced(String s) {
+        Stack<Character> stack = new Stack<>();
+
+        for (char ch : s.toCharArray()) {
+            if (ch == '(' || ch == '{' || ch == '[') {
+                stack.push(ch);
+            } else if (ch == ')' || ch == '}' || ch == ']') {
+                if (stack.isEmpty()) return false;
+
+                char top = stack.pop();
+                if ((ch == ')' && top != '(') ||
+                        (ch == '}' && top != '{') ||
+                        (ch == ']' && top != '[')) {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
     }
 
     // Question 4
-    public static int power (int x, int n) {
+    public static int power(int x, int n) {
         if (n == 0) {
             return 1;
         } else {
@@ -58,10 +74,10 @@ public class Main {
         System.out.println(Arrays.toString(sorted));
 
         // Question 3
+        System.out.println(isBalanced("(){}[]"));     // true
+        System.out.println(isBalanced("({[)]}"));     // false
 
         // Question 4
-        System.out.println(power(2,3));
-
-
+        System.out.println(power(2, 3));              // 8
     }
 }
