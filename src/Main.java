@@ -41,15 +41,13 @@ public class Main {
         Stack<Character> stack = new Stack<>();
 
         for (char ch : s.toCharArray()) {
-            if (ch == '(' || ch == '{' || ch == '[') {
+            if (ch == '(' || ch == '[') {
                 stack.push(ch);
-            } else if (ch == ')' || ch == '}' || ch == ']') {
+            } else if (ch == ')' || ch == ']') {
                 if (stack.isEmpty()) return false;
 
                 char top = stack.pop();
-                if ((ch == ')' && top != '(') ||
-                        (ch == '}' && top != '{') ||
-                        (ch == ']' && top != '[')) {
+                if ((ch == ')' && top != '(') || (ch == ']' && top != '[')) {
                     return false;
                 }
             }
@@ -74,8 +72,9 @@ public class Main {
         System.out.println(Arrays.toString(sorted));
 
         // Question 3
-        System.out.println(isBalanced("(){}[]"));     // true
-        System.out.println(isBalanced("({[)]}"));     // false
+        System.out.println(isBalanced("()[]"));
+        System.out.println(isBalanced("([]"));
+        System.out.println(isBalanced("[()]"));
 
         // Question 4
         System.out.println(power(2, 3));              // 8
