@@ -36,9 +36,32 @@ public class Main {
         return nums;
     }
 
+    // Question 3
+    public static boolean isBalanced ( String s) {
+        return false;
+    }
+
+    // Question 4
+    public static int power (int x, int n) {
+        if (n == 0) {
+            return 1;
+        } else {
+            int product = power(x, n - 1) * x;
+            return product;
+        }
+    }
+
     public static void main(String[] args) {
-        int[] input = {0, 0, 2, 2, 1, 1};
+        // Question 1
+        int[] input = {2, 0, 2, 1, 1, 0};
         int[] sorted = sortColors(input);
-        System.out.println(Arrays.toString(sorted)); // should print: [0, 0, 1, 1, 2, 2]
+        System.out.println(Arrays.toString(sorted));
+
+        // Question 3
+
+        // Question 4
+        System.out.println(power(2,3));
+
+
     }
 }
