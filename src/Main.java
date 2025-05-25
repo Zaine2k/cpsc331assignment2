@@ -44,8 +44,9 @@ public class Main {
             if (ch == '(' || ch == '[') {
                 stack.push(ch);
             } else if (ch == ')' || ch == ']') {
-                if (stack.isEmpty()) return false;
-
+                if (stack.isEmpty()) {
+                    return false;
+                }
                 char top = stack.pop();
                 if ((ch == ')' && top != '(') || (ch == ']' && top != '[')) {
                     return false;
