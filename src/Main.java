@@ -38,22 +38,34 @@ public class Main {
 
     // Question 3
     public static boolean isBalanced(String s) {
-        Stack<Character> stack = new Stack<>();
+        char[] stack = new char[s.length()]; // Acquire length of array for stack.
+        int stackTop = -1;
 
-        for (char ch : s.toCharArray()) {
-            if (ch == '(' || ch == '[') {
-                stack.push(ch);
-            } else if (ch == ')' || ch == ']') {
-                if (stack.isEmpty()) {
+        for (char letter : s.toCharArray()) {
+            if (letter == '(') {
+                stack[++stackTop] = letter; // push
+            } else if (letter == '[') {
+                stack[++stackTop] = letter;
+
+            } else if (letter == ')') {
+                if (stackTop == -1) return false;
+                char open = stack[stackTop--]; // pop
+                if (letter == ')' && open != '(') {
+                    return false;
+                } else if (letter == ']') {
                     return false;
                 }
-                char top = stack.pop();
-                if ((ch == ')' && top != '(') || (ch == ']' && top != '[')) {
+            } else if (letter == ']') {
+                if (stackTop == -1) return false;
+                char open = stack[stackTop--];
+                if (letter == ']' && open != '[') {
+                    return false;
+                } else if (letter == ')') {
                     return false;
                 }
             }
         }
-        return stack.isEmpty();
+        return stackTop == -1;
     }
 
     // Question 4
